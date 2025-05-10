@@ -1,0 +1,24 @@
+services:
+  db:
+    build: ./
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5437:5432'
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    container_name: postgres_adventure
+    #restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - hopdbt-network
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  hopdbt-network:
+    external: true
