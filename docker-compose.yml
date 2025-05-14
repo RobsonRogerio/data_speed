@@ -4,21 +4,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: hopdbt-web
-    container_name: hopdbt-web-container
+    image: hopweb-dataspeed
+    container_name: hopcontainer-dataspeed
     environment:
-      - HOP_PROJECT_FOLDER=/project
+      - HOP_PROJECT_FOLDER=/usr/local/tomcat/webapps/ROOT/project
       - HOP_PROJECT_NAME=hopdbt
       - HOP_ENVIRONMENT_NAME=hopdbt-dev
-      - HOP_ENVIRONMENT_CONFIG_FILE_NAME_PATHS=/config/hopdbt-dev.json
+      - HOP_ENVIRONMENT_CONFIG_FILE_NAME_PATHS=/usr/local/tomcat/webapps/ROOT/config/hopdbt-dev.json
       - HOP_ENVIRONMENT-PURPOSE=Development
-      - HOP_CONFIG_FOLDER=/config
+      - HOP_CONFIG_FOLDER=/usr/local/tomcat/webapps/ROOT/config
       - HOP_WEB_THEME=light
     ports:
       - "8085:8080"
     volumes:
-      - ./projeto_hop:/project
-      - ./config_hop:/config
+      - ./projeto_hop:/usr/local/tomcat/webapps/ROOT/project
+      - ./config_hop:/usr/local/tomcat/webapps/ROOT/config
     networks:
       - hopdbt-network
 
@@ -26,8 +26,8 @@ services:
     build:
       context: ./jenkins_home
       dockerfile: Dockerfile
-    image: hopdbt-jenkins
-    container_name: jenkins-container
+    image: jenkins-dataspeed
+    container_name: jenkins-container-dataspeed
     ports:
       - "8095:8080"
       - "50000:50000"
@@ -44,8 +44,8 @@ services:
     build:
       context: ./projeto_dbt
       dockerfile: Dockerfile
-    image: imgdbt-hopdbt
-    container_name: dbt-hopdbt
+    image: imgdbt-dbt-dataspeed
+    container_name: dbt-dbt-dataspeed
     ports:
       - "9100:8080"
     volumes:
@@ -64,7 +64,7 @@ services:
       - '5444:5432'
     volumes:
       - ./db_data_dw:/var/lib/postgresql/data
-    container_name: postgres_timescale_dw
+    container_name: postgres_timescale_dw-dataspeed
     networks:
       - hopdbt-network
 
@@ -72,7 +72,7 @@ services:
     build:
       context: ./postgres-adventures
       dockerfile: Dockerfile
-    image: db_adventure
+    image: db_adventure-dataspeed
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -80,7 +80,7 @@ services:
       - '5437:5432'
     volumes:
       - ./postgres-adventures/db_data:/var/lib/postgresql/data
-    container_name: db_adventure
+    container_name: db_adventure-dataspeed
     networks:
       - hopdbt-network
 
