@@ -1,7 +1,7 @@
 postgres_dw/db_data_dw
 jenkins_home/jenkins
-db_data_dw
 config_hop
+db_data_dw
 postgres-adventures/db_data
 projeto_hop
 projeto_dbt/dbt

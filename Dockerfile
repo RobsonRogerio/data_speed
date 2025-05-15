@@ -13,3 +13,5 @@ COPY tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
 USER hop
 
 RUN mkdir /usr/local/tomcat/webapps/ROOT/project
+
+RUN chown -R hop:hop /usr/local/tomcat/webapps/ROOT/project /usr/local/tomcat/webapps/ROOT/config
