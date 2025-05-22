@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     image: hopweb-dataspeed
     container_name: hopcontainer-dataspeed
-    #user: "0:0"
+    user: "0:0"
     environment:
       - HOP_PROJECT_FOLDER=/usr/local/tomcat/webapps/ROOT/project
       - HOP_PROJECT_NAME=hopdbt
