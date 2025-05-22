@@ -41,7 +41,7 @@ pipeline {
                   sh """
                     docker exec ${DOCKER_CONTAINER} bash -c "${HOP_SCRIPT} \\
                       -p ${HOP_PROJECT} \\
-                      -f /project/${relativePath} \\
+                      -f /usr/local/tomcat/webapps/ROOT/project/${relativePath} \\
                       -e hopdbt-dev \\
                       -r local"
                   """
