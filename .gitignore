@@ -1,11 +1,8 @@
-postgres_dw/db_data_dw
 jenkins_home/jenkins
-config_hop
 db_data_dw
+config_hop
+projeto_dbt
 postgres-adventures/db_data
-projeto_hop
-projeto_dbt/dbt
-projeto_dbt/profiles
 artigos
 senha_app_gmail.txt
 postgresql-42.4.3.jar
