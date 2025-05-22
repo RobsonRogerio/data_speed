@@ -46,7 +46,7 @@ pipeline {
                       -r local"
                   """
                 }
-
+                //teste
                 stage("DBT Test - Bronze - ${hopAmbiente}") {
                   echo "Executando dbt test nos sources Bronze (${dbtTarget})"
                   sh """
