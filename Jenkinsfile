@@ -28,7 +28,8 @@ pipeline {
 
               ambientes.each { ambiente ->
                 def hopAmbiente = ambiente.toUpperCase()
-                def dbtTarget = ambiente.toLowerCase()
+                //def dbtTarget = ambiente.toLowerCase()
+                def dbtTarget = 'dev'
 
                 if (ambiente == 'prd') {
                   stage("Aprovação para PRD - ${nome}") {
