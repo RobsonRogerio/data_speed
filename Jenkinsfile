@@ -27,9 +27,9 @@ pipeline {
               def ambientes = env.BRANCH_NAME == 'main' ? ['prd'] : ['dev', 'qa']
 
               ambientes.each { ambiente ->
-                def hopAmbiente = ambiente.toUpperCase()
-                //def dbtTarget = ambiente.toLowerCase()
-                def dbtTarget = 'dev'
+                def hopAmbiente = ambiente.toLowerCase()
+                def dbtTarget = ambiente.toLowerCase()
+                //def dbtTarget = 'dev'
 
                 if (ambiente == 'prd') {
                   stage("Aprovação para PRD - ${nome}") {
@@ -43,7 +43,7 @@ pipeline {
                     docker exec ${DOCKER_CONTAINER} bash -c "${HOP_SCRIPT} \\
                       -p ${HOP_PROJECT} \\
                       -f /usr/local/tomcat/webapps/ROOT/project/${relativePath} \\
-                      -e hopdbt-dev \\
+                      -e hopdbt-${hopAmbiente} \\
                       -r local"
                   """
                 }
