@@ -27,7 +27,7 @@ pipeline {
               def ambientes = env.BRANCH_NAME == 'main' ? ['prd'] : ['dev', 'qa']
 
               ambientes.each { ambiente ->
-                def hopAmbiente = ambiente.toUpperCase()
+                def hopAmbiente = ambiente.toLowerCase()
                 def dbtTarget = ambiente.toLowerCase()
                 //def dbtTarget = 'dev'
 
