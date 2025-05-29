@@ -7,7 +7,7 @@ pipeline {
     DOCKER_CONTAINER = 'hopcontainer-dataspeed'
     DBT_CONTAINER = 'dbt-dbt-dataspeed'
     DBT_PROJECT_DIR = '/dbt/dbt_dataspeed'
-    REPO_LOCAL = 'D:/arruda-consulting/gondaski/arquivos_repo'
+    REPO_LOCAL = 'D:/arruda-consulting/gondaski/arquivos_repo/gondaski_cicd'
   }
 
   stages {
@@ -25,7 +25,8 @@ pipeline {
               def nome = filePath.tokenize('/').last().replace('.hpl', '').replace('.hwf', '')
               def relativePath = filePath.replace('projeto_hop/', '')
 
-              def ambientes = env.BRANCH_NAME == 'main' ? ['prd']
+              //def ambientes = env.BRANCH_NAME == 'main' ? ['prd'] : ['dev']
+              def ambientes = env.BRANCH_NAME
 
               ambientes.each { ambiente ->
                 def hopAmbiente = ambiente.toUpperCase()
@@ -36,8 +37,8 @@ pipeline {
                 stage('Atualizar repositório local') {
                   steps {
                     bat """
-                    cd /d ${env.REPO_LOCAL}
-                    git pull
+                    cd ${env.REPO_LOCAL}
+                    git pull origin ${ambientes}
                     """
                   }
                 }
