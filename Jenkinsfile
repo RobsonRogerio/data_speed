@@ -37,7 +37,7 @@ pipeline {
                 stage('Atualizar repositório local') {
                   steps {
                     bat """
-                    cd ${env.REPO_LOCAL}
+                    cd ${REPO_LOCAL}
                     git pull origin ${ambientes}
                     """
                   }
