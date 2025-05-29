@@ -7,6 +7,7 @@ pipeline {
     DOCKER_CONTAINER = 'hopcontainer-dataspeed'
     DBT_CONTAINER = 'dbt-dbt-dataspeed'
     DBT_PROJECT_DIR = '/dbt/dbt_dataspeed'
+    REPO_LOCAL = 'D:/arruda-consulting/gondaski/arquivos_repo'
   }
 
   stages {
@@ -24,20 +25,43 @@ pipeline {
               def nome = filePath.tokenize('/').last().replace('.hpl', '').replace('.hwf', '')
               def relativePath = filePath.replace('projeto_hop/', '')
 
-              def ambientes = env.BRANCH_NAME == 'main' ? ['prd'] : ['dev', 'qa']
+              def ambientes = env.BRANCH_NAME == 'main' ? ['prd']
 
               ambientes.each { ambiente ->
                 def hopAmbiente = ambiente.toUpperCase()
                 //def dbtTarget = ambiente.toLowerCase()
-                def dbtTarget = 'dev'
+                //def dbtTarget = 'dev'
+
+                
+                stage('Atualizar repositório local') {
+                  steps {
+                    bat """
+                    cd /d ${env.REPO_LOCAL}
+                    git pull
+                    """
+                  }
+                }
+                
+                //-e ${hopAmbiente} \\
+                stage("Hop validação - ${hopAmbiente} - ${nome}") {
+                  echo "Executando ${tipo} ${nome} no ambiente ${hopAmbiente}"
+                  sh """
+                    docker exec ${DOCKER_CONTAINER} bash -c "${HOP_SCRIPT} \\
+                      -p ${HOP_PROJECT} \\
+                      -f /usr/local/tomcat/webapps/ROOT/project/${relativePath} \\
+                      -e hopdbt-dev \\
+                      -c validate
+                      -r local"
+                  """
+                }
 
                 if (ambiente == 'prd') {
                   stage("Aprovação para PRD - ${nome}") {
                     input message: "Deseja executar ${tipo} '${nome}' em PRD?"
                   }
                 }
-                //-e ${hopAmbiente} \\
-                stage("Hop - ${hopAmbiente} - ${nome}") {
+
+                stage("Hop execução - ${hopAmbiente} - ${nome}") {
                   echo "Executando ${tipo} ${nome} no ambiente ${hopAmbiente}"
                   sh """
                     docker exec ${DOCKER_CONTAINER} bash -c "${HOP_SCRIPT} \\
@@ -45,45 +69,6 @@ pipeline {
                       -f /usr/local/tomcat/webapps/ROOT/project/${relativePath} \\
                       -e hopdbt-dev \\
                       -r local"
-                  """
-                }
-                //teste
-                stage("DBT Test - Bronze - ${hopAmbiente}") {
-                  echo "Executando dbt test nos sources Bronze (${dbtTarget})"
-                  sh """
-                    docker exec ${DBT_CONTAINER} dbt test \\
-                      --project-dir ${DBT_PROJECT_DIR} \\
-                      --target ${dbtTarget} \\
-                      --select source:bronze
-                  """
-                }
-
-                stage("DBT Run - Silver - ${hopAmbiente}") {
-                  echo "Executando dbt run nos modelos Silver (${dbtTarget})"
-                  sh """
-                    docker exec ${DBT_CONTAINER} dbt run \\
-                      --project-dir ${DBT_PROJECT_DIR} \\
-                      --target ${dbtTarget} \\
-                      --select path:models/silver
-                  """
-                }
-
-                stage("DBT Test - Silver - ${hopAmbiente}") {
-                  echo "Executando dbt test nos modelos Silver (${dbtTarget})"
-                  sh """
-                    docker exec ${DBT_CONTAINER} dbt test \\
-                      --project-dir ${DBT_PROJECT_DIR} \\
-                      --target ${dbtTarget} \\
-                      --select path:models/silver
-                  """
-                }
-
-                stage("DBT Docs Generate - ${hopAmbiente}") {
-                  echo "Gerando documentação atualizada do dbt para o ambiente ${dbtTarget}"
-                  sh """
-                    docker exec ${DBT_CONTAINER} dbt docs generate \\
-                      --project-dir ${DBT_PROJECT_DIR} \\
-                      --target ${dbtTarget}
                   """
                 }
               }
