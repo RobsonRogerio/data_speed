@@ -39,8 +39,8 @@
     </partitioning>
     <attributes/>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>176</yloc>
+      <xloc>304</xloc>
+      <yloc>160</yloc>
     </GUI>
   </transform>
   <transform>

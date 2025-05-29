@@ -26,7 +26,7 @@ pipeline {
               def relativePath = filePath.replace('projeto_hop/', '')
 
               //def ambientes = env.BRANCH_NAME == 'main' ? ['prd'] : ['dev']
-              def ambientes = env.BRANCH_NAME
+              def ambientes = [env.BRANCH_NAME]
 
               ambientes.each { ambiente ->
                 def hopAmbiente = ambiente.toUpperCase()
