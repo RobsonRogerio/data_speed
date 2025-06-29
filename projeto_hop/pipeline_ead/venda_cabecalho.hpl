@@ -174,8 +174,8 @@
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>208</yloc>
+      <xloc>528</xloc>
+      <yloc>192</yloc>
     </GUI>
   </transform>
   <transform>
