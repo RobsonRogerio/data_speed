@@ -10,3 +10,4 @@ generate_schema_name.sql
 stress_venda.sql
 teste.py
 Jenkinsfile_copy
+projeto_dbt copy/
