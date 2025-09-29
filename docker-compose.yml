@@ -80,13 +80,13 @@ services:
     ports:
       - '5437:5432'
     volumes:
-      - ./postgres-adventures/db_data:/var/lib/postgresql/data
+      - db_adventure_data:/var/lib/postgresql/data
     container_name: db_adventure-dataspeed
     networks:
       - hopdbt-network
 
 volumes:
-  db_data:
+  db_adventure_data:
     driver: local
 
 networks:
