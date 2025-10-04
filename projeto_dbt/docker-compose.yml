@@ -2,11 +2,17 @@ version: '3.8'
 
 services:
   dbt:
-    image: imgdbt-hopdbt
+    build:
+      context: .               # diretório onde está o Dockerfile
+      args:
+        UID: ${MY_UID}
+        GID: ${MY_GID}
+    image: imgdbt-hopdbt       # ainda pode dar nome à imagem
     container_name: dbt-hopdbt
     volumes:
-      - ./dbt:/dbt
-      - ./profiles:/root/.dbt/
+      - ./dbt/dbt_ead:/dbt
+      - ./profiles:/home/dbt/.dbt
+    working_dir: /dbt
     entrypoint: ["tail", "-f", "/dev/null"]
     networks:
       - hopdbt-network
