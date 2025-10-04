@@ -11,3 +11,4 @@ stress_venda.sql
 teste.py
 Jenkinsfile_copy
 projeto_dbt copy/
+fix_perms.sh
