@@ -13,9 +13,9 @@
     <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
     <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
     <created_user>-</created_user>
-    <created_date>2025/06/03 23:32:12.528</created_date>
+    <created_date>2025/09/29 21:20:04.870</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2025/06/03 23:32:12.528</modified_date>
+    <modified_date>2025/09/29 21:20:04.870</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -38,7 +38,7 @@
       <schema_name/>
     </partitioning>
     <commit>1000</commit>
-    <connection>db_dw_ead</connection>
+    <connection>db_dw</connection>
     <fields>
       <field>
         <column_name>salesorderid</column_name>
@@ -99,8 +99,8 @@
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>160</yloc>
+      <xloc>304</xloc>
+      <yloc>80</yloc>
     </GUI>
   </transform>
   <transform>
@@ -114,7 +114,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>db_adventure_ead</connection>
+    <connection>db_adventure</connection>
     <execute_each_row>N</execute_each_row>
     <limit>0</limit>
     <sql>SELECT
@@ -133,8 +133,8 @@ FROM sales.salesorderdetail
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>160</yloc>
+      <xloc>112</xloc>
+      <yloc>80</yloc>
     </GUI>
   </transform>
   <transform_error_handling>

@@ -26,12 +26,12 @@
       <schedulerType>0</schedulerType>
       <weekDay>1</weekDay>
       <parallel>N</parallel>
-      <xloc>336</xloc>
-      <yloc>256</yloc>
+      <xloc>96</xloc>
+      <yloc>48</yloc>
       <attributes_hac/>
     </action>
     <action>
-      <name>vendas.hpl</name>
+      <name>vendas</name>
       <description/>
       <type>PIPELINE</type>
       <attributes/>
@@ -42,6 +42,8 @@
       <create_parent_folder>N</create_parent_folder>
       <exec_per_row>N</exec_per_row>
       <filename>${PROJECT_HOME}/pipelines/vendas.hpl</filename>
+      <logext/>
+      <logfile/>
       <loglevel>Basic</loglevel>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
@@ -52,12 +54,12 @@
       <set_logfile>N</set_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
-      <xloc>496</xloc>
-      <yloc>256</yloc>
+      <xloc>256</xloc>
+      <yloc>48</yloc>
       <attributes_hac/>
     </action>
     <action>
-      <name>venda_cabecalho.hpl</name>
+      <name>venda_cabecalho</name>
       <description/>
       <type>PIPELINE</type>
       <attributes/>
@@ -68,6 +70,8 @@
       <create_parent_folder>N</create_parent_folder>
       <exec_per_row>N</exec_per_row>
       <filename>${PROJECT_HOME}/pipelines/venda_cabecalho.hpl</filename>
+      <logext/>
+      <logfile/>
       <loglevel>Basic</loglevel>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
@@ -78,8 +82,8 @@
       <set_logfile>N</set_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <parallel>N</parallel>
-      <xloc>656</xloc>
-      <yloc>256</yloc>
+      <xloc>416</xloc>
+      <yloc>48</yloc>
       <attributes_hac/>
     </action>
     <action>
@@ -88,28 +92,28 @@
       <type>SUCCESS</type>
       <attributes/>
       <parallel>N</parallel>
-      <xloc>816</xloc>
-      <yloc>256</yloc>
+      <xloc>576</xloc>
+      <yloc>48</yloc>
       <attributes_hac/>
     </action>
   </actions>
   <hops>
     <hop>
       <from>Start</from>
-      <to>vendas.hpl</to>
+      <to>vendas</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>vendas.hpl</from>
-      <to>venda_cabecalho.hpl</to>
+      <from>vendas</from>
+      <to>venda_cabecalho</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>venda_cabecalho.hpl</from>
+      <from>venda_cabecalho</from>
       <to>Success</to>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>

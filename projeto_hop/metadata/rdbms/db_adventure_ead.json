@@ -4,7 +4,7 @@
       "databaseName": "Adventureworks",
       "pluginId": "POSTGRESQL",
       "accessType": 0,
-      "hostname": "db_adventure-dataspeed",
+      "hostname": "db_adventure",
       "password": "Encrypted 2be98afc86aa7f2e4bb16bd64d980aac9",
       "pluginName": "PostgreSQL",
       "port": "5432",

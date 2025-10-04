@@ -21,30 +21,13 @@
   </notepads>
   <order>
     <hop>
-      <from>extract_venda</from>
-      <to>venda_detalhe_dw</to>
+      <from>extrair_vendas</from>
+      <to>dw_venda</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <transform>
-    <name>Dummy (do nothing)</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>160</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>extract_venda</name>
+    <name>extrair_vendas</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -72,12 +55,12 @@ FROM sales.salesorderdetail</sql>
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>480</xloc>
-      <yloc>272</yloc>
+      <xloc>96</xloc>
+      <yloc>48</yloc>
     </GUI>
   </transform>
   <transform>
-    <name>venda_detalhe_dw</name>
+    <name>dw_venda</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -135,19 +118,22 @@ FROM sales.salesorderdetail</sql>
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
     <return_keys>N</return_keys>
     <schema>bronze</schema>
     <specify_fields>Y</specify_fields>
     <table>detalhe_venda</table>
+    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>Y</truncate>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>272</yloc>
+      <xloc>320</xloc>
+      <yloc>48</yloc>
     </GUI>
   </transform>
   <transform_error_handling>

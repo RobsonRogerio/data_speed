@@ -21,47 +21,13 @@
   </notepads>
   <order>
     <hop>
-      <from>venda_cabelhaco</from>
-      <to>Table output</to>
+      <from>venda_cabecalho</from>
+      <to>cabecalho_venda</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <transform>
-    <name>Dummy (do nothing)</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>304</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Dummy (do nothing) 2</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>112</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Table output</name>
+    <name>cabecalho_venda</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -179,23 +145,26 @@
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
     <return_keys>N</return_keys>
     <schema>bronze</schema>
     <specify_fields>Y</specify_fields>
-    <table>venda_cabecalho</table>
+    <table>cabecalho_venda</table>
+    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>Y</truncate>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>192</yloc>
+      <xloc>384</xloc>
+      <yloc>32</yloc>
     </GUI>
   </transform>
   <transform>
-    <name>venda_cabelhaco</name>
+    <name>venda_cabecalho</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -239,8 +208,8 @@ FROM sales.salesorderheader
     <variables_active>N</variables_active>
     <attributes/>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>192</yloc>
+      <xloc>144</xloc>
+      <yloc>32</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
