@@ -6,7 +6,7 @@ pipeline {
     HOP_SCRIPT = '/usr/local/tomcat/webapps/ROOT/hop-run.sh'
     DOCKER_CONTAINER = 'hopcontainer-dataspeed'
     DBT_CONTAINER = 'dbt-dbt-dataspeed'
-    DBT_PROJECT_DIR = '/dbt/dbt_ead'
+    DBT_PROJECT_DIR = '/dbt/dbt_dataspeed'
   }
 
   stages {
